@@ -12,16 +12,13 @@ public class TokenPass
    *  random integer value in the range between 0 and playerCount-1, inclusive.
    *  @param playerCount the number of players
    */
-  public TokenPass(int playerCount)
-
-          
-          
-          
-          
-          
-          
-          
-          
+  public TokenPass(int playerCount) {
+      board = new int[playerCount];
+      for (int ii=0; ii<playerCount; ++ii) {
+          board[ii] = (int)(10*Math.random())+1;
+      }
+      currentPlayer = (int)((playerCount)*(Math.random()));
+  }
 
   // Part (b)
 
@@ -32,19 +29,16 @@ public class TokenPass
    *  Precondition: the current player has at least one token.
    *  Postcondition: the current player has not changed.
    */
-  public void distributeCurrentPlayerTokens()
-
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+  public void distributeCurrentPlayerTokens() {
+      int tokens = board[currentPlayer];
+      board[currentPlayer] = 0;
+      int i = currentPlayer;
+      while (tokens > 0) {
+          i = (i+1)%board.length;
+          board[i]++;
+          tokens--;
+      }
+  }
           
   /*******************************************************************************/
 
